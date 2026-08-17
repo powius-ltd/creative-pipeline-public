@@ -32,16 +32,44 @@ npm run dev
 `http://localhost:3000` açılır. Proje listesi boş gelir çünkü `projects/`
 klasörü sürüm kontrolüne dahil değil (bkz. `projects/_template/`).
 
-## 3. İlk projeni oluştur
+## 3. İlk projeni ve run'ını oluştur
 
-```bash
-cp -r projects/_template projects/deneme
-```
+Proje klasörünü **elle kopyalama** — `projects/_template/` sadece şemanın
+referansı, gerçek projeler dashboard'daki "Yeni Proje" formuyla (`POST
+/api/projects`) oluşturulur; bu uç nokta `config.json` + `brand-memory/`'yi
+programatik olarak kurar.
 
-`projects/deneme/config.json`'ı `config.example.json`'dan türet ve marka
-adı/platform gibi alanları doldur. Sonra dashboard'dan yeni run başlat.
+1. `http://localhost:3000`'da "Yeni Proje" formunu doldur (marka adı, platform,
+   varsayılan mod → `carousel` en olgun mod, onunla başla).
+2. Proje sayfasında "Yeni Run" ile bir konu (`topic`) gir, `auto`'yu aç.
+3. `MOCK_MODE=true` iken run birkaç saniyede `awaiting_publish`'e düşer ve
+   `projects/<slug>/runs/<runId>/assets/slides/` altında gerçek PNG'ler,
+   `caption.txt` oluşur — hepsi `[MOCK]` etiketli içerik ama dosyalar gerçek.
 
-## 4. `claude` CLI bağlantısı (API key gerekmez)
+Not: ilk run'da Remotion, dizgi/render için ~110 MB'lık bir Chrome Headless
+Shell indirir (bir kerelik, otomatik). İlk `auto` run bu yüzden ~1 dakika
+sürebilir, sonrakiler saniyeler alır.
+
+## 4. Nasıl çalışır — kısa özet
+
+- Her **run** tek bir içerik demektir. Bir run, moduna göre sıralı aşamalardan
+  geçer (carousel: konsept → plan → copy → visual → compose → qc).
+- `auto: true` ile run tüm aşamaları tek seferde zincirler; `auto: false` ile
+  her aşamadan sonra dashboard'da "Onayla"yı beklersin.
+- Bir aşama insan girdisi gerektiriyorsa (ör. gerçek görsel üretimi key'siz
+  çalıştırılıyorsa) run `awaiting_operator` durumuna düşer — dashboard'da ne
+  yapman gerektiği yazar, sen işi yapıp ilgili `submit-*` uç noktasına
+  gönderince run kaldığı yerden devam eder. Bu bir hata değil, tasarımın
+  parçası — hat asla kırılmaz, bekler.
+- QC aşaması `rejected` derse yayın engellenir; dashboard'da "Yayınla (insan
+  onayı)" butonuyla bilinçli olarak üzerine geçebilirsin — bu karar geçmişe
+  `published_over_qc_rejection` olarak yazılır.
+- Dashboard run sayfasını 2 saniyede bir polling ile günceller, elle yenilemen
+  gerekmez.
+- Maliyet: her aşamanın tahmini/gerçek maliyeti run sayfasında görünür.
+  `MOCK_MODE=true` iken her şey $0.00.
+
+## 5. `claude` CLI bağlantısı (API key gerekmez)
 
 Sanat yönetmeni, copywriter ve carousel QC ajanları `claude` CLI'sini spawn
 eder ve **senin kendi Claude Code oturumunu** kullanır — ayrı bir API key
@@ -55,7 +83,7 @@ ve terminalde `claude` ile giriş yapılmış olması. CLI bulunamazsa veya otur
 düşmüşse ilgili aşama hatayla patlamaz, `awaiting_operator` durumuna düşer ve
 hat kırılmadan bekler.
 
-## 5. Görsel/video üretimi — Higgsfield
+## 6. Görsel/video üretimi — Higgsfield
 
 Higgsfield de aynı mantıkla çalışır: ayrı bir API key şart değil, `claude`
 CLI'ye bağlı **Higgsfield MCP connector**'ı üzerinden kullanıcı oturumuyla
@@ -66,7 +94,7 @@ araçlarıyla üretip `submit-visual` ile sonucu bildirir.
 Tam otomatik (HTTP, insansız) çalıştırmak istersen `.env.local`'e
 `HIGGSFIELD_API_KEY` veya `FAL_KEY` gir.
 
-## 6. Gerçeğe geçiş sırası (önerilen)
+## 7. Gerçeğe geçiş sırası (önerilen)
 
 Her şeyi aynı anda gerçeğe almak yerine tek tek dene:
 
@@ -78,7 +106,7 @@ Her şeyi aynı anda gerçeğe almak yerine tek tek dene:
 `real-video` modu için ayrıca ffmpeg/ffprobe ve (opsiyonel) ElevenLabs key'i
 gerekir — bkz. `.env.local.example`'daki ilgili bölüm.
 
-## 7. Sık karşılaşılan takılmalar
+## 8. Sık karşılaşılan takılmalar
 
 - **"CLI bulunamadı"**: `CLAUDE_CLI_PATH` ile yolu elle ver.
 - **Aşama sürekli `awaiting_operator`'da kalıyor**: bu bir hata değil, tasarım
