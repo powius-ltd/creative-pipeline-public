@@ -1,0 +1,56 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# env files (can opt-in for committing if needed)
+.env*
+# ...ama örnek şablon yayınlanmalı, yoksa proje kurulamaz. İçinde değer yok, sadece
+# anahtar isimleri ve açıklamalar var.
+!.env.local.example
+
+# vercel
+.vercel
+
+# generated project data (brand memory, runs, generated assets) — stays local,
+# each project folder is meant to be isolated and not versioned by default.
+/projects/*/
+!/projects/_template/
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# referans video sökümü (analyze-refs.mts) — indirilen videolar versiyonlanmaz,
+# analiz JSON'ları ve GRAMMAR.md kalır: asıl değer onlarda.
+/refs/*.mp4
+/refs/*.mov
+/refs/*.webm
+/refs/*.error.txt
