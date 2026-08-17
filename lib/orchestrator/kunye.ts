@@ -112,7 +112,7 @@ export function renderKunye(
     s.push("");
     s.push(
       "Meta reklam adına, Google **reklam grubu** adına ve `utm_campaign`'e aynen bu " +
-        "string girilir. Sözleşme: `powius-pazarlama/olcum/creative-key.md`.",
+        "string girilir (bkz. lib/creative-key.ts).",
     );
     if (run.platform !== "other") {
       s.push("");

@@ -331,8 +331,9 @@ export interface VariantIdea {
 // ---- Konsept aşaması (Stratejist × Muhalif) --------------------------------
 
 /**
- * Powius pazarlama taksonomisi — bkz. powius-pazarlama/taksonomi.json (tek kaynak).
- * Bu enum'lar orada değişirse burada da değişmeli.
+ * Kreatif taksonomi — açı/değer/segment enum'ları. Bu proje dışında ayrı bir
+ * kaynakta (ör. bir marka anayasası dosyasında) tutuluyorsa oradaki tanım
+ * değiştiğinde buradakiler de güncellenmeli.
  */
 export type Aci = "sonuc-kazanim" | "aci-korku" | "kimlik" | "sosyal-kanit";
 export type DegerBileseni =
@@ -529,8 +530,7 @@ export interface ReservedVariant extends VariantIdea {
 }
 
 /**
- * Bir performans kaydının hangi dünyadan geldiği. ZORUNLU alan — bkz.
- * powius-pazarlama/olcum/creative-key.md.
+ * Bir performans kaydının hangi dünyadan geldiği. ZORUNLU alan.
  *
  * Aynı creative hem organik hem ücretli yayınlanabilir ve ikisinin metrik şeması
  * tamamen farklıdır (organik: izlenme/kaydetme/trial, ücretli: spend/roas/frequency).

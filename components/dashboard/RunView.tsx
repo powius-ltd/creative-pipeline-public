@@ -70,7 +70,7 @@ function CostTable({ run, costStages }: { run: RunState; costStages: StageId[] }
   );
 }
 
-/** Hücre kodu: <segment>-<açı>, bkz. powius-pazarlama/olcum/utm-standardi.md. */
+/** Hücre kodu: <segment>-<açı>, UTM/creative-key sözleşmesine göre üretilir. */
 function hucreKodu(run: RunState): string | null {
   if (!run.brief) return null;
   return `${run.brief.segment}-${run.brief.aci}`;
@@ -320,8 +320,7 @@ export function RunView({
             </p>
           )}
           <p className="mt-1 text-neutral-600">
-            Bu sorgu dizesini landing linkine ekle (bkz. powius-pazarlama/olcum/utm-standardi.md).
-            48 saat sonra metrikleri gir:
+            Bu sorgu dizesini landing linkine ekle. 48 saat sonra metrikleri gir:
           </p>
           <div className="mt-2">
             <MetricsForm runId={runId} projectSlug={projectSlug} />

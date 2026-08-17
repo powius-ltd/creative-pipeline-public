@@ -4,7 +4,7 @@ import { readRun } from "./runStore";
 import type { PerformanceEntry, PerformanceKanal } from "./types";
 
 export interface RecordMetricsInput {
-  /** Zorunlu — bkz. powius-pazarlama/olcum/creative-key.md. */
+  /** Zorunlu — organik/ücretli/site metrikleri ayrı şemalarda gelir. */
   kanal: PerformanceKanal;
   /** Ücretlide zorunlu ("meta" | "google"), organikte önerilir. */
   platform?: string;
@@ -13,10 +13,10 @@ export interface RecordMetricsInput {
 }
 
 /**
- * Sonuç departmanının minimum girişi (bkz. powius-pazarlama/olcum/utm-standardi.md,
- * KREATIF-DIREKTORLUK-ARGE.md §11). Organik metrikler 48 saat sonra elle girilir;
- * ücretli metrikler ads-analyst'ten gelir. Faz 8 ölçekleme döngüsünü kapatan uç budur:
- * performans → brand-memory → bir sonraki konsept çağrısının "rezerv hook" bağlamı.
+ * Sonuç ölçümünün minimum girişi. Organik metrikler 48 saat sonra elle girilir;
+ * ücretli metrikler ayrı bir reklam analiz sisteminden gelebilir. Ölçekleme
+ * döngüsünü kapatan uç budur: performans → brand-memory → bir sonraki konsept
+ * çağrısının "rezerv hook" bağlamı.
  */
 export async function recordMetrics(
   projectSlug: string,

@@ -5,8 +5,8 @@ import type { PerformanceKanal } from "@/lib/orchestrator/types";
 const KANALLAR: PerformanceKanal[] = ["organik", "ucretli", "site"];
 
 /**
- * Performans girişi. Organik metrikler 48 saat sonra elle doldurulur (bkz.
- * powius-pazarlama/olcum/utm-standardi.md), ücretli metrikler ads-analyst'ten gelir.
+ * Performans girişi. Organik metrikler 48 saat sonra elle doldurulur, ücretli
+ * metrikler reklam analiz aracından gelir.
  * Body: { projectSlug, kanal, platform?, metrics: {...}, notes? }
  */
 export async function POST(

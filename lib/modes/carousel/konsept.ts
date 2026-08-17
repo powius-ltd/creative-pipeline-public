@@ -16,12 +16,10 @@ import type { AgentResult, KreatifBrief, RunState, VariantIdea } from "../../orc
  * Pipeline'ın önüne çekilen karar katmanı: tema/hook/açı artık planner'ın kendi
  * sezgisiyle değil, burada üretilen KreatifBrief'e göre kurulur. Planner ve
  * copywriter bu aşamadan SONRA çalışır ve brief varsa onu UYGULAR (bkz. planner.ts,
- * copy.ts) — karar verici değil uygulayıcı olurlar. Tasarım kaynağı:
- * powius-pazarlama/KREATIF-DIREKTORLUK-ARGE.md §6, strateji-referansi.md.
+ * copy.ts) — karar verici değil uygulayıcı olurlar.
  *
  * İKİ AYRI ÇAĞRI bilinçli: Stratejist ve Muhalif aynı çağrıya konursa model kendi
- * kendine nazik bir sentez yapar, muhalefet ölür (arge dokümanı §6.2, "Ayrı kalmak
- * zorunda olan tek çift").
+ * kendine nazik bir sentez yapar, muhalefet ölür — ayrı kalmak zorunda olan tek çift.
  */
 
 const ANAYASA_FILES = [
@@ -43,9 +41,8 @@ async function readAnayasa(slug: string): Promise<string> {
   if (!exists) {
     throw new OperatorRequiredError(
       `Konsept aşaması için '${slug}' markasının anayasası eksik (projects/${slug}/anayasa/).\n` +
-        `Bir Claude Code operatörü powius-pazarlama/KREATIF-DIREKTORLUK-ARGE.md §2 ve ` +
-        `strateji-referansi.md'yi kullanarak anayasa dosyalarını kurmalı, sonra bu run'ı ` +
-        `yeniden dene.`,
+        `Bir operatör aşağıdaki dosyaları elle kurmalı (bkz. ANAYASA_FILES), sonra bu ` +
+        `run'ı yeniden dene.`,
     );
   }
 

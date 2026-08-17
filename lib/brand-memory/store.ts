@@ -69,7 +69,7 @@ export async function addPerformanceEntry(
   if (!entry.kanal) {
     throw new Error(
       "PerformanceEntry.kanal zorunlu — organik/ücretli/site metrikleri aynı dizide " +
-        "ayırt edilemeden karışamaz (bkz. powius-pazarlama/olcum/creative-key.md).",
+        "ayırt edilemeden karışamaz.",
     );
   }
   // Ücretli tarafta platform bilinmeden kayıt kabul edilmez: Meta ROAS'ı ile Google

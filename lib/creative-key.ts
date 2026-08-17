@@ -1,13 +1,12 @@
 /**
  * Creative key — reklam adı, reklam grubu adı ve `utm_campaign` için TEK isimlendirme
- * sözleşmesi. Sözleşmenin metni: powius-pazarlama/olcum/creative-key.md
+ * sözleşmesi.
  *
  *     <projectSlug>__<aci>__<segment>__<runId>
  *     cariusb__aci-korku__mod-shop__run-1786549178449-8a9wx
  *
- * Bu dosyanın bir eşi `ads` departmanında (`Masaüstü/ads/src/creative/link.ts`) duruyor;
- * orası yalnızca parse eder. İki repo birbirini import ETMEZ — paylaşılan tek şey
- * sözleşmedir. Burası değişirse orası da değişir; ikisinin test vakaları aynıdır.
+ * Reklam analizi yapan ayrı bir sistem varsa bu string'i aynı sözleşmeyle parse
+ * edebilir — iki taraf birbirini import etmez, paylaşılan tek şey sözleşmedir.
  */
 
 /** taksonomi.json → aci.values ile aynı küme. Orada değişirse burada da değişir. */

@@ -6,6 +6,8 @@ Her "run" bir içerik; her aşamada bir ajan çalışır, sonra ya otomatik iler
 Hat **moda göre şekil değiştirir**: carousel'in ses aşaması yoktur, video modunun dizgi
 aşaması yoktur. Çekirdek durum makinesi modlardan habersizdir.
 
+> Kurulup ilk run'ı çalıştırmak için [SETUP.md](SETUP.md)'ye bak.
+
 ## Mimari
 
 ```
